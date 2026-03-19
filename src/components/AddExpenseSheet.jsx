@@ -148,7 +148,7 @@ export default function AddExpenseSheet({ isOpen, onClose }) {
                 <input
                   id="expenseTitle"
                   type="text"
-                  placeholder="e.g. Dinner at Thalassa, Petrol, Movie tickets"
+                  placeholder="Enter expense title..."
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                   style={{ width: '100%', fontSize: '1.4rem', fontWeight: '500', background: 'transparent', borderBottom: '1px solid var(--border-color)', paddingBottom: '8px' }}
@@ -162,7 +162,7 @@ export default function AddExpenseSheet({ isOpen, onClose }) {
                   <input
                     type="number"
                     inputMode="numeric"
-                    placeholder="0.00"
+                    placeholder="0"
                     value={amount}
                     onChange={handleAmountChange}
                     style={{ width: '100%', fontSize: '2.5rem', fontWeight: '700', color: 'var(--text-primary)', background: 'transparent' }}

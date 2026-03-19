@@ -65,6 +65,11 @@ input, button, select, textarea {
   background: none;
 }
 
+::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.35; /* Decreased to make it clearly look like a hint, not filled text */
+}
+
 button {
   cursor: pointer;
 }

@@ -94,7 +94,7 @@ export default function GroupSetup() {
         <input
           id="groupName"
           type="text"
-          placeholder="e.g. Goa Trip 2026, Family Reunion..."
+          placeholder="Enter group name..."
           value={groupName}
           onChange={e => setGroupName(e.target.value)}
           style={{
@@ -158,7 +158,7 @@ export default function GroupSetup() {
                     <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', display: 'block' }}>Name</label>
                     <input
                       type="text"
-                      placeholder="e.g. Rahul, Sneha"
+                      placeholder="Enter name"
                       value={member.name}
                       onChange={e => updateMember(member.id, 'name', e.target.value)}
                       style={{ fontSize: '1.2rem', width: '100%', fontWeight: '500' }}
@@ -210,7 +210,7 @@ export default function GroupSetup() {
                         <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>UPI Address</label>
                         <input
                           type="text"
-                          placeholder="e.g. rahul@upi, 9876543210@paytm"
+                          placeholder="Enter UPI ID (e.g. name@upi)"
                           value={member.upiId}
                           onChange={e => updateMember(member.id, 'upiId', e.target.value)}
                           style={{

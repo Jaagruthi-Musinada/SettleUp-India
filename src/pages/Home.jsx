@@ -55,8 +55,8 @@ export default function Home() {
         }}>
           Split smarter.<br/>Settle faster.
         </h1>
-        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '40px', maxWidth: '300px' }}>
-          For groups where not everyone pays the same way
+        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '40px', maxWidth: '400px', lineHeight: '1.5' }}>
+          The simplest way to split group expenses with built-in support for UPI, Cash, and members without phones.
         </p>
 
         <div style={{ width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
