@@ -1,16 +1,127 @@
-# React + Vite
+# SettleUp India 🇮🇳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> "PhonePe assumes everyone has PhonePe. SettleUp India assumes nothing."
 
-Currently, two official plugins are available:
+A group expense splitter built for the real Indian context — where 
+some people pay via UPI, some pay cash only, and some (like elders 
+or kids in the group) don't use a phone at all.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Most splitting apps assume everyone is on the same platform. 
+SettleUp India doesn't. It routes every settlement based on each 
+person's payment ability — automatically.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## The Problem It Solves
 
-## Expanding the ESLint configuration
+You go on a trip with 6 people. Rahul paid for the hotel. 
+Priya paid for food. Arun only carries cash. Dadi doesn't 
+have a smartphone. PhonePe can't handle this. Splitwise 
+doesn't know about UPI deeplinks. Nobody has a solution 
+for the mixed group.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+SettleUp India does.
+
+---
+
+## Features
+
+**Smart Group Setup**
+- Add members with their payment mode — UPI, Cash Only, or No Phone
+- UPI members add their UPI ID for instant payment links
+- No-phone members get assigned a "collector" from the group
+  who physically collects from them
+
+**Expense Tracking**
+- Add expenses with category tags — Food, Travel, Hotel, Shopping, Fun
+- Split equally, by custom amount, or by percentage
+- Live expense feed updates as the group adds entries
+
+**Smart Settlement Engine**
+- Debt simplification algorithm — calculates the minimum 
+  number of transactions to settle everything fairly
+- Routes each payment by mode:
+  - UPI members → one-tap UPI deeplink (works with PhonePe, 
+    GPay, Paytm — any UPI app)
+  - Cash members → "hand cash to [person]" instruction
+  - No-phone members → assigned collector gets a 
+    "collect from [person] in person" instruction
+- Mark each settlement as done — progress tracked live
+
+**Summary & Share**
+- Full trip summary with category breakdown
+- Each member's net balance at a glance
+- WhatsApp share button with pre-formatted settlement message
+- Confetti celebration when the group is fully settled 🎉
+
+---
+
+## Why This Is Different
+
+| Feature | PhonePe | Splitwise | SettleUp India |
+|---|---|---|---|
+| Works without the app | ❌ | ✅ | ✅ |
+| Cash-only members | ❌ | ✅ | ✅ |
+| No-phone members | ❌ | ❌ | ✅ |
+| UPI deeplinks | ❌ | ❌ | ✅ |
+| Debt simplification | ❌ | ✅ | ✅ |
+| Mixed payment routing | ❌ | ❌ | ✅ |
+| No login needed | ❌ | ❌ | ✅ |
+
+---
+
+## Tech Stack
+
+- **React + Vite** — frontend
+- **localStorage** — all data stored on device, no backend
+- **Framer Motion** — animations and transitions
+- **canvas-confetti** — celebration screen
+- **React Router** (HashRouter) — client-side routing
+- **Zero backend** — no server, no database, no cost
+
+---
+
+## How to Run Locally
+```bash
+# Clone the repo
+git clone https://github.com/Jaagruthi-Musinada/SettleUp-India.git
+
+# Go into the project
+cd SettleUp India
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+```
+
+Open http://localhost:5173 in your browser.
+
+
+---
+
+## How It Works — Settlement Algorithm
+
+1. Calculate net balance for each person
+   `(total paid) - (total share owed)`
+2. Split into creditors (positive balance) and debtors (negative)
+3. Greedily match the largest debtor with the largest creditor
+4. Repeat until all balances reach zero
+5. Apply payment mode routing on top of each transaction
+
+This gives the minimum possible number of transactions 
+to settle the entire group — no unnecessary back-and-forth.
+
+---
+
+
+
+---
+
+
+---
+
+## License
+
+MIT — free to use, fork, and build on.
