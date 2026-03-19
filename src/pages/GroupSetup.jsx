@@ -59,7 +59,7 @@ export default function GroupSetup() {
     };
 
     updateGroup(newGroup);
-    
+
     // Trigger the confetti validation!
     confetti({
       particleCount: 150,
@@ -90,9 +90,11 @@ export default function GroupSetup() {
       style={{ padding: '24px', maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px', minHeight: '100vh' }}
     >
       <div style={{ position: 'relative' }}>
+        <label htmlFor="groupName" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: '600', marginBottom: '8px', display: 'block' }}>Create a New Group</label>
         <input
+          id="groupName"
           type="text"
-          placeholder="Goa Trip 2026, Family Reunion..."
+          placeholder="e.g. Goa Trip 2026, Family Reunion..."
           value={groupName}
           onChange={e => setGroupName(e.target.value)}
           style={{
@@ -152,13 +154,16 @@ export default function GroupSetup() {
                 style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <input
-                    type="text"
-                    placeholder={`Member ${index + 1} Name`}
-                    value={member.name}
-                    onChange={e => updateMember(member.id, 'name', e.target.value)}
-                    style={{ fontSize: '1.2rem', width: '100%', fontWeight: '500' }}
-                  />
+                  <div style={{ width: '100%' }}>
+                    <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', display: 'block' }}>Name</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Rahul, Sneha"
+                      value={member.name}
+                      onChange={e => updateMember(member.id, 'name', e.target.value)}
+                      style={{ fontSize: '1.2rem', width: '100%', fontWeight: '500' }}
+                    />
+                  </div>
                   {members.length > 1 && (
                     <button onClick={() => removeMember(member.id)} style={{ color: 'var(--badge-red)', padding: '4px' }}>
                       ✕
@@ -167,26 +172,29 @@ export default function GroupSetup() {
                 </div>
 
                 {/* Payment Mode Toggles */}
-                <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '4px', gap: '4px' }}>
-                  {['upi', 'cash', 'nophone'].map(mode => (
-                    <button
-                      key={mode}
-                      onClick={() => updateMember(member.id, 'mode', mode)}
-                      style={{
-                        flex: 1,
-                        padding: '8px',
-                        borderRadius: '8px',
-                        fontSize: '0.85rem',
-                        fontWeight: '600',
-                        background: member.mode === mode ? 'var(--glass-bg)' : 'transparent',
-                        color: member.mode === mode 
-                          ? (mode === 'upi' ? 'var(--badge-upi)' : mode === 'cash' ? 'var(--badge-cash)' : 'var(--badge-nophone)') 
-                          : 'var(--text-secondary)'
-                      }}
-                    >
-                      {mode === 'upi' ? 'UPI' : mode === 'cash' ? 'Cash Only' : 'No Phone'}
-                    </button>
-                  ))}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Payment Preference</label>
+                  <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '4px', gap: '4px' }}>
+                    {['upi', 'cash', 'nophone'].map(mode => (
+                      <button
+                        key={mode}
+                        onClick={() => updateMember(member.id, 'mode', mode)}
+                        style={{
+                          flex: 1,
+                          padding: '8px',
+                          borderRadius: '8px',
+                          fontSize: '0.85rem',
+                          fontWeight: '600',
+                          background: member.mode === mode ? 'var(--glass-bg)' : 'transparent',
+                          color: member.mode === mode
+                            ? (mode === 'upi' ? 'var(--badge-upi)' : mode === 'cash' ? 'var(--badge-cash)' : 'var(--badge-nophone)')
+                            : 'var(--text-secondary)'
+                        }}
+                      >
+                        {mode === 'upi' ? 'UPI' : mode === 'cash' ? 'Cash Only' : 'No Phone'}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Conditional Inputs */}
@@ -198,20 +206,23 @@ export default function GroupSetup() {
                       exit={{ height: 0, opacity: 0 }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <input
-                        type="text"
-                        placeholder="UPI ID (e.g. rahul@upi)"
-                        value={member.upiId}
-                        onChange={e => updateMember(member.id, 'upiId', e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '12px',
-                          background: 'rgba(0,0,0,0.2)',
-                          borderRadius: '8px',
-                          border: '1px solid var(--border-color)',
-                          fontSize: '0.9rem'
-                        }}
-                      />
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>UPI Address</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. rahul@upi, 9876543210@paytm"
+                          value={member.upiId}
+                          onChange={e => updateMember(member.id, 'upiId', e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px',
+                            background: 'rgba(0,0,0,0.2)',
+                            borderRadius: '8px',
+                            border: '1px solid var(--border-color)',
+                            fontSize: '0.9rem'
+                          }}
+                        />
+                      </div>
                     </motion.div>
                   )}
                   {member.mode === 'nophone' && (
@@ -221,31 +232,48 @@ export default function GroupSetup() {
                       exit={{ height: 0, opacity: 0 }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <select
-                        value={member.collectorId || ''}
-                        onChange={e => updateMember(member.id, 'collectorId', e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '12px',
-                          background: 'rgba(0,0,0,0.2)',
-                          borderRadius: '8px',
-                          border: '1px solid var(--border-color)',
-                          fontSize: '0.9rem',
-                          color: member.collectorId ? 'var(--text-primary)' : 'var(--text-secondary)'
-                        }}
-                      >
-                        <option value="" disabled>Select a collector...</option>
-                        {members.filter(m => m.id !== member.id && m.name.trim()).map(m => (
-                          <option key={m.id} value={m.id}>{m.name}</option>
-                        ))}
-                      </select>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Who handles payments for {member.name || 'this member'}?</label>
+                        <div style={{ position: 'relative' }}>
+                          <select
+                            value={member.collectorId || ''}
+                            onChange={e => updateMember(member.id, 'collectorId', e.target.value)}
+                            style={{
+                              width: '100%',
+                              padding: '12px 32px 12px 12px',
+                              background: 'rgba(255,255,255,0.08)',
+                              borderRadius: '10px',
+                              border: '2px solid var(--primary-accent)',
+                              fontSize: '0.95rem',
+                              color: member.collectorId ? 'white' : 'rgba(255,255,255,0.4)',
+                              appearance: 'none',
+                              cursor: 'pointer',
+                              fontWeight: '600',
+                              boxShadow: '0 0 10px rgba(97, 82, 249, 0.2)'
+                            }}
+                          >
+                            <option value="" disabled>Select a member...</option>
+                            {members.filter(m => m.id !== member.id && m.name.trim()).map(m => (
+                              <option key={m.id} value={m.id} style={{ background: '#111', color: 'white' }}>{m.name}</option>
+                            ))}
+                          </select>
+                          <div style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--primary-accent)' }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                          </div>
+                        </div>
+                        <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                          * This person will pay and collect money on behalf of {member.name || 'them'}.
+                        </p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
             ))}
           </AnimatePresence>
-          
+
           <button onClick={addMember} className="pill-btn outlined" style={{ padding: '12px', marginTop: '8px' }}>
             + Add another member
           </button>

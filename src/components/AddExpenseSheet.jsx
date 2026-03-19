@@ -144,25 +144,30 @@ export default function AddExpenseSheet({ isOpen, onClose }) {
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
+                <label htmlFor="expenseTitle" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: '600', marginBottom: '8px', display: 'block' }}>What is this for?</label>
                 <input
+                  id="expenseTitle"
                   type="text"
-                  placeholder="Expense title"
+                  placeholder="e.g. Dinner at Thalassa, Petrol, Movie tickets"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                   style={{ width: '100%', fontSize: '1.4rem', fontWeight: '500', background: 'transparent', borderBottom: '1px solid var(--border-color)', paddingBottom: '8px' }}
                 />
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--text-secondary)' }}>₹</span>
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="0"
-                  value={amount}
-                  onChange={handleAmountChange}
-                  style={{ width: '100%', fontSize: '2.5rem', fontWeight: '700', color: 'var(--text-primary)', background: 'transparent' }}
-                />
+              <div>
+                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: '600', marginBottom: '8px', display: 'block' }}>Amount</label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--text-secondary)' }}>₹</span>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="0.00"
+                    value={amount}
+                    onChange={handleAmountChange}
+                    style={{ width: '100%', fontSize: '2.5rem', fontWeight: '700', color: 'var(--text-primary)', background: 'transparent' }}
+                  />
+                </div>
               </div>
 
               <div>
@@ -225,6 +230,7 @@ export default function AddExpenseSheet({ isOpen, onClose }) {
               </div>
 
               <div>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: '600', marginBottom: '8px' }}>Split Method</p>
                 <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '4px', gap: '4px' }}>
                   {['equal', 'custom', 'percent'].map(type => (
                     <button
