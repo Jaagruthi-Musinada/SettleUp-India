@@ -1,0 +1,157 @@
+@import './components/animations.css';
+
+:root {
+  /* Colors - Zova pitch black theme */
+  --bg-color: #000000;
+  --surface-color: #0A0A0A;
+  --primary-accent: #6152F9; /* High saturation electric indigo */
+  --primary-dim: rgba(97, 82, 249, 0.15);
+  --text-primary: #FFFFFF;
+  --text-secondary: #8A8A93;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  
+  /* Badges */
+  --badge-upi: #10B981; /* Neon green */
+  --badge-cash: #F59E0B; /* Bright amber */
+  --badge-nophone: #6B7280; /* Neutral grey */
+  --badge-red: #EF4444; /* Neon red */
+
+  /* Typography */
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'DM Sans', sans-serif;
+  
+  /* Avatar Gradients */
+  --avatar-0: linear-gradient(135deg, #6152F9 0%, #4834D4 100%);
+  --avatar-1: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --avatar-2: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --avatar-3: linear-gradient(135deg, #D946EF 0%, #C026D3 100%);
+  --avatar-4: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  --avatar-5: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+  --avatar-6: linear-gradient(135deg, #EAB308 0%, #CA8A04 100%);
+  --avatar-7: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Subtle SaaS dot matrix background */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Glassmorphism Utilities - Zova style */
+.glass-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px inset var(--glass-bg);
+}
+
+.pill-btn {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+  border-radius: 9999px;
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  width: 100%;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pill-btn:active {
+  transform: scale(0.98);
+}
+
+.pill-btn:hover {
+  opacity: 0.9;
+}
+
+.pill-btn.outlined {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.pill-btn.outlined:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pill-btn.badge-upi {
+  background-color: var(--primary-accent);
+  color: var(--text-primary);
+}
+
+.pill-badge {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.02em;
+}
+
+.badge-upi { background-color: rgba(16, 185, 129, 0.15); color: var(--badge-upi); border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-cash { background-color: rgba(245, 158, 11, 0.15); color: var(--badge-cash); border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-nophone { background-color: rgba(107, 114, 128, 0.15); color: var(--badge-nophone); border: 1px solid rgba(107, 114, 128, 0.3); }
+
+/* Hide scrollbar structure */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
